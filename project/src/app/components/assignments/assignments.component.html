@@ -1,0 +1,103 @@
+<!-- Main container for the assignments page -->
+<div class="assignments-page">
+
+  <!-- Page header with title and create button -->
+  <div class="page-header">
+    <div>
+      <h1>Assignments</h1> <!-- Page title -->
+      <p>Track and manage all course assignments</p> <!-- Subtitle/description -->
+    </div>
+
+    <!-- Button to create a new assignment -->
+    <button mat-raised-button color="primary">
+      <mat-icon>add</mat-icon> <!-- Add icon -->
+      Create Assignment
+    </button>
+  </div>
+
+  <!-- Tabs to filter assignments by status -->
+  <div class="assignments-tabs">
+    <button mat-raised-button color="primary">All Assignments</button> <!-- Active tab -->
+    <button mat-stroked-button color="primary">Pending</button> <!-- Filter for pending -->
+    <button mat-stroked-button color="primary">Submitted</button> <!-- Filter for submitted -->
+    <button mat-stroked-button color="primary">Graded</button> <!-- Filter for graded -->
+  </div>
+
+  <!-- List of assignments displayed as cards -->
+  <div class="assignments-list">
+
+    <!-- Loop through all assignments and render each one -->
+    <mat-card *ngFor="let assignment of assignments" class="assignment-card animate-fade-in">
+
+      <!-- Header section of each assignment card -->
+      <div class="assignment-header">
+
+        <!-- Assignment title and course chip -->
+        <div class="assignment-title">
+          <h3>{{ assignment.title }}</h3> <!-- Assignment title -->
+
+          <!-- Chip showing course name with dynamic background color -->
+          <mat-chip [style.background-color]="getCourseColor(assignment.courseId)" class="course-chip">
+            {{ getCourseTitle(assignment.courseId) }}
+          </mat-chip>
+        </div>
+
+        <!-- Assignment status chip (e.g., pending, submitted, graded) -->
+        <div class="assignment-status">
+          <mat-chip [class]="'status-' + assignment.status">
+            {{ assignment.status }}
+          </mat-chip>
+        </div>
+      </div>
+
+      <!-- Details section: course, due date, and grade (if available) -->
+      <div class="assignment-details">
+
+        <!-- Course name -->
+        <div class="detail-item">
+          <span class="detail-label">Course:</span>
+          <span class="detail-value">{{ getCourseTitle(assignment.courseId) }}</span>
+        </div>
+
+        <!-- Due date, with styling if overdue -->
+        <div class="detail-item">
+          <span class="detail-label">Due Date:</span>
+          <span class="detail-value" [class.overdue]="isOverdue(assignment.dueDate)">
+            {{ formatDueDate(assignment.dueDate) }}
+          </span>
+        </div>
+
+        <!-- Grade info shown only if grade is available -->
+        <div *ngIf="assignment.grade" class="detail-item">
+          <span class="detail-label">Grade:</span>
+          <span class="detail-value grade">{{ assignment.grade }}/100</span>
+        </div>
+      </div>
+
+      <!-- Buttons for actions like submit, view, and download -->
+      <div class="assignment-actions">
+
+        <!-- Submit button visible only if status is 'pending' -->
+        <button *ngIf="assignment.status === 'pending'" 
+                mat-raised-button color="primary"
+                (click)="submitAssignment(assignment.id)">
+          <mat-icon>upload</mat-icon>
+          Submit Assignment
+        </button>
+
+        <!-- Button to view assignment details -->
+        <button mat-stroked-button color="primary">
+          <mat-icon>visibility</mat-icon>
+          View Details
+        </button>
+
+        <!-- Button to download assignment file -->
+        <button mat-stroked-button color="primary">
+          <mat-icon>download</mat-icon>
+          Download
+        </button>
+
+      </div>
+    </mat-card>
+  </div>
+</div>

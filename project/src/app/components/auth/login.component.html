@@ -1,0 +1,92 @@
+<!-- Container for the authentication section -->
+<div class="auth-container">
+
+  <!-- Angular Material card to style the login box -->
+  <mat-card class="auth-card">
+
+    <!-- Header of the card -->
+    <mat-card-header>
+      <div class="auth-header">
+
+        <!-- Logo section -->
+        <div class="logo">
+          <div class="logo-icon">CC</div> <!-- Logo initials -->
+          <span class="logo-text">ClassCapsule</span> <!-- Logo name -->
+        </div>
+
+        <!-- Welcome message -->
+        <h2>Welcome Back</h2>
+        <p>Sign in to your account</p>
+      </div>
+    </mat-card-header>
+
+    <!-- Card content where the form is placed -->
+    <mat-card-content>
+
+      <!-- Login form using Angular Reactive Forms -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+        <!-- Email field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label> <!-- Label for the email input -->
+          
+          <!-- Input for email -->
+          <input matInput type="email" formControlName="email" placeholder="Enter your email">
+          
+          <!-- Icon at the end of the input field -->
+          <mat-icon matSuffix>email</mat-icon>
+          
+          <!-- Error if email is not entered -->
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          
+          <!-- Error if email format is invalid -->
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label> <!-- Label for password input -->
+          
+          <!-- Input for password with toggle visibility -->
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Enter your password">
+          
+          <!-- Toggle password visibility icon -->
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          
+          <!-- Error if password is not entered -->
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Submit button for login -->
+        <button mat-raised-button color="primary" type="submit" class="full-width auth-button" [disabled]="loginForm.invalid || loading">
+          
+          <!-- Show spinner while loading -->
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          
+          <!-- Show text when not loading -->
+          <span *ngIf="!loading">Sign In</span>
+        </button>
+
+      </form>
+    </mat-card-content>
+
+    <!-- Footer with link to registration -->
+    <mat-card-actions>
+      <div class="auth-footer">
+        <p>Don't have an account? 
+          <!-- Button to navigate to registration -->
+          <button mat-button color="primary" (click)="goToRegister()">Sign Up</button>
+        </p>
+      </div>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

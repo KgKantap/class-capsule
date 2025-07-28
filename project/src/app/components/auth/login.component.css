@@ -1,0 +1,82 @@
+.auth-container {
+  min-height: 100vh; /* Make container at least as tall as the viewport */
+  display: flex; /* Use Flexbox layout */
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Horizontally center items */
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%); /* Apply a diagonal gradient background */
+  padding: var(--spacing-4); /* Add spacing around the container */
+}
+
+.auth-card {
+  width: 100%; /* Take full width of parent container */
+  max-width: 400px; /* But don't exceed 400px */
+  padding: var(--spacing-6); /* Add inner spacing */
+}
+
+.auth-header {
+  text-align: center; /* Center-align text inside header */
+  margin-bottom: var(--spacing-6); /* Space below the header */
+}
+
+.logo {
+  display: flex; /* Use Flexbox for layout */
+  align-items: center; /* Vertically center icon and text */
+  justify-content: center; /* Horizontally center icon and text */
+  gap: var(--spacing-3); /* Space between icon and text */
+  margin-bottom: var(--spacing-4); /* Space below the logo */
+}
+
+.logo-icon {
+  width: 50px; /* Set icon width */
+  height: 50px; /* Set icon height */
+  background: linear-gradient(135deg, var(--primary-500), var(--secondary-500)); /* Gradient background */
+  border-radius: var(--radius-lg); /* Rounded corners */
+  display: flex; /* Center content inside */
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  color: white; /* White text color */
+  font-weight: 700; /* Bold text */
+  font-size: 1.5rem; /* Large text size */
+}
+
+.logo-text {
+  font-size: 1.75rem; /* Slightly larger text size */
+  font-weight: 700; /* Bold text */
+  color: var(--neutral-800); /* Dark neutral color */
+}
+
+.auth-header h2 {
+  margin-bottom: var(--spacing-2); /* Space below heading */
+  color: var(--neutral-800); /* Heading text color */
+}
+
+.auth-header p {
+  color: var(--neutral-600); /* Subtle text color */
+  margin: 0; /* Remove default paragraph margin */
+}
+
+.full-width {
+  width: 100%; /* Make element take full width */
+  margin-bottom: var(--spacing-4); /* Add spacing below */
+}
+
+.auth-button {
+  height: 48px; /* Set button height */
+  font-size: 1rem; /* Standard font size */
+  font-weight: 600; /* Semi-bold text */
+  margin-top: var(--spacing-4); /* Space above the button */
+}
+
+.auth-footer {
+  text-align: center; /* Center text inside footer */
+  width: 100%; /* Full width */
+}
+
+.auth-footer p {
+  margin: 0; /* Remove default paragraph margin */
+  color: var(--neutral-600); /* Subtle text color */
+}
+
+mat-spinner {
+  margin-right: var(--spacing-2); /* Space to the right of spinner */
+}
